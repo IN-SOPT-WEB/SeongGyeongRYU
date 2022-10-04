@@ -1,0 +1,49 @@
+@import url("reset.css");
+
+body {
+  width: 1024px;
+
+  background-color: #f8f9fa;
+  margin: 0 auto;
+}
+
+.header {
+  height: 60px;
+  border: 1px solid black;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header_title {
+  margin: 20px;
+}
+
+.header_right {
+  display: flex;
+}
+
+.header_login {
+  width: 70px;
+  height: 40px;
+  border: none;
+
+  border-radius: 20px;
+}
+
+.nav {
+  height: 60px;
+  border: 1px solid black;
+
+  margin-top: 10px;
+
+  background-color: yellow;
+}
+
+.card_section {
+}
+
+.card {
+  background-color: aqua;
+}
