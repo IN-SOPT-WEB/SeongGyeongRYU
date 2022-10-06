@@ -114,6 +114,14 @@ hr {
 
 .main_right_delete {
   float: right;
+
+  border: none;
+  background-color: #fff;
+
+  font-size: 1rem;
+
+  padding: 0;
+  margin: 0;
 }
 
 .main_input {
