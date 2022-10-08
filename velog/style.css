@@ -146,6 +146,13 @@ body {
   flex-direction: column;
 }
 
+/* 카드 호버시 애니메이션 적용 */
+.card:hover {
+  transition: transform 0.1s linear;
+  transform: translateY(-10px);
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+}
+
 .card_thumbnail {
   display: block;
   height: 50%;
