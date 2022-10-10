@@ -10,7 +10,6 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="todoList.js"></script>
   </head>
   <body>
     <header class="header">
@@ -25,13 +24,13 @@
       <section class="main_left">
         <h2 class="main_title">오늘 할 일</h2>
 
-        <div class="main_input">
+        <div class="main_left_input">
           <input
-            class="main_inputbox"
+            class="main_left_inputbox"
             type="text"
             placeholder="todo를 입력해주세요"
           />
-          <input class="main_input_btn" type="button" value="&#x2b;" />
+          <input class="main_left_input_btn" type="button" value="&#x2b;" />
         </div>
       </section>
 
@@ -44,7 +43,7 @@
               <button class="main_right_delete">🗑</button>
             </h4>
           </li>
-          <hr />
+          <!-- <hr /> -->
           <li>
             <h4>
               📚독서독서📚
@@ -53,16 +52,17 @@
           </li>
         </ul>
 
-        <div class="main_input">
+        <div class="main_right_input">
           <input
-            class="main_inputbox"
+            class="main_right_inputbox"
             type="text"
             placeholder="todo를 입력해주세요"
           />
-          <input class="main_input_btn" type="button" value="&#x2b;" />
+          <input class="main_right_input_btn" type="button" value="&#x2b;" />
         </div>
       </section>
     </main>
     <footer class="footer"></footer>
   </body>
+  <script src="todoList.js"></script>
 </html>
