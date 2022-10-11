@@ -21,7 +21,7 @@ input[type="button"] {
 }
 
 /* header */
-.header {
+.header_title {
   width: 100%;
   height: 10%;
   font-size: 20px;
@@ -54,12 +54,12 @@ button[class^="nav_"] {
 
   background-color: #f8c8c4;
 
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
 }
 
 /* main */
 
-.main {
+.main_container {
   height: 70%;
 
   display: flex;
@@ -72,17 +72,7 @@ button[class^="nav_"] {
   padding: 20px;
 }
 
-.main_left {
-  width: 50%;
-  height: 100%;
-
-  border: 1px solid black;
-  background-color: #fff;
-
-  display: flex;
-  flex-wrap: wrap;
-}
-
+.main_left,
 .main_right {
   width: 50%;
   height: 100%;
@@ -92,31 +82,28 @@ button[class^="nav_"] {
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-hr {
-  border-style: dashed;
+.main_left_todo_wrap,
+.main_right_todo_wrap {
+  flex-grow: 1;
 
-  width: 100%;
-
-  color: rgb(177, 177, 177);
-
-  margin-left: 0;
-}
-
-.main_right_todo {
-  width: 90%;
   list-style: none;
 
-  padding: 0;
-  margin: 0 30px 0 30px;
+  margin: 0 30px;
 
   overflow: scroll;
 }
 
-.main_right_delete {
-  float: right;
+.main_todo {
+  border-bottom: dashed 1px rgb(177, 177, 177);
 
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_delete {
   border: none;
   background-color: #fff;
 
@@ -131,7 +118,8 @@ hr {
   width: 95%;
   height: 7%;
 
-  margin: auto 20px 20px 20px;
+  margin: 20px;
+  /* position: absolute; */
 
   display: flex;
 }
@@ -166,7 +154,7 @@ hr {
 }
 
 /* footer */
-.footer {
+.bottom {
   height: 10%;
 
   border: 1px solid black;

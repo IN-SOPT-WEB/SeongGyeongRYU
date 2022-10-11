@@ -12,57 +12,53 @@
     />
   </head>
   <body>
-    <header class="header">
-      <h3>🍒 체리마루가 되자 🍒</h3>
+    <header class="header_title">
+      <h2>🍒 체리마루가 되자 🍒</h2>
     </header>
     <nav class="nav">
       <button class="nav_todayOnly">오늘만 보기</button>
       <button class="nav_tmrOnly">내일만 보기</button>
       <button class="nav_all">함께 보기</button>
     </nav>
-    <main class="main">
+    <main class="main_container">
       <section class="main_left">
-        <h2 class="main_title">오늘 할 일</h2>
+        <h3 class="main_title">오늘 할 일</h3>
+        <ul class="main_left_todo_wrap"></ul>
 
-        <div class="main_left_input">
+        <form class="main_left_input">
           <input
             class="main_left_inputbox"
             type="text"
             placeholder="todo를 입력해주세요"
           />
           <input class="main_left_input_btn" type="button" value="&#x2b;" />
-        </div>
+        </form>
       </section>
 
       <section class="main_right">
-        <h2 class="main_title">내일 할 일</h2>
-        <ul class="main_right_todo">
-          <li>
-            <h4>
-              🧺빨래하기🧺
-              <button class="main_right_delete">🗑</button>
-            </h4>
+        <h3 class="main_title">내일 할 일</h3>
+        <ul class="main_right_todo_wrap">
+          <li class="main_todo">
+            <h4>🧺빨래하기🧺</h4>
+            <button class="main_delete">🗑</button>
           </li>
-          <!-- <hr /> -->
-          <li>
-            <h4>
-              📚독서독서📚
-              <button class="main_right_delete">🗑</button>
-            </h4>
+          <li class="main_todo">
+            <h4>📚독서독서📚</h4>
+            <button class="main_delete">🗑</button>
           </li>
         </ul>
 
-        <div class="main_right_input">
+        <form class="main_right_input">
           <input
             class="main_right_inputbox"
             type="text"
             placeholder="todo를 입력해주세요"
           />
           <input class="main_right_input_btn" type="button" value="&#x2b;" />
-        </div>
+        </form>
       </section>
     </main>
-    <footer class="footer"></footer>
+    <footer class="bottom"></footer>
   </body>
   <script src="todoList.js"></script>
 </html>
