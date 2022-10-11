@@ -23,31 +23,30 @@ allBtn.addEventListener("click", () => {
 
 //2. 입력을 완료하고 버튼을 누르면, 텍스와 삭제 버튼을 가진 li 를 ul 태그 안에 생성해줘요
 
-const leftInput = document.querySelector(".main_left_input");
-const rightInput = document.querySelector(".main_right_input");
+const input = document.querySelectorAll(".main_input");
 
-const leftInputBox = document.querySelector(".main_left_inputbox");
-const rightInputBox = document.querySelector(".main_right_inputbox");
+const inputBox = document.querySelectorAll(".main_inputbox");
 
-const addBtn = document.querySelector(".main_right_input_btn");
+const addBtn = document.querySelectorAll(".main_input_btn");
 
-leftInput.addEventListener("submit", (event) => {
-  const leftTodo = document.querySelector(".main_left_todo_wrap");
-  event.preventDefault();
-  addToDo(leftTodo, leftInputBox);
-});
+for (let i = 0; i < input.length; i++) {
+  console.log(inputBox[i]);
+  const todo = document.querySelectorAll(".main_todo_wrap");
 
-// addBtn.addEventListener("click");
+  input[i].addEventListener("submit", (e) => {
+    e.preventDefault();
+    addToDo(todo[i], inputBox[i]);
+  });
 
-rightInput.addEventListener("submit", (event) => {
-  const rightTodo = document.querySelector(".main_right_todo_wrap");
-  event.preventDefault();
-  addToDo(rightTodo, rightInputBox);
-});
+  addBtn[i].addEventListener("click", (e) => {
+    e.preventDefault();
+    addToDo(todo[i], inputBox[i]);
+  });
+}
 
-function addToDo(ul, inputBox) {
-  const todo = inputBox.value;
-  inputBox.value = "";
+function addToDo(ul, inputContent) {
+  const todo = inputContent.value;
+  inputContent.value = "";
 
   const li = document.createElement("li");
   li.setAttribute("class", "main_todo");
