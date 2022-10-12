@@ -19,11 +19,19 @@ function paintTag(newTagObj) {
   tagForm.insertBefore(tag, tagInput);
 }
 
-//태그를 추거하고 저장해서 화면에 보여주는 함수
+//태그를 추가하고 저장해서 화면에 보여주는 함수
 function addTag(event) {
   event.preventDefault();
   const newTag = tagInput.value;
   tagInput.value = "";
+
+  //같은 태그를 입력했을 때는 태그가 추가되지 않도록
+  for (let key of tags) {
+    //객체의 value값에 접근하려면 for...of
+    if (key.text === newTag) {
+      return;
+    }
+  }
 
   const newTagObj = {
     text: newTag,
@@ -36,7 +44,7 @@ function addTag(event) {
 
 tagForm.addEventListener("submit", addTag);
 
-//2. 태그 클릭하면 삭제 되게하기
+//태그를 클릭하면 삭제하는 함수
 
 function deleteTag(event) {
   const targetTag = event.target;
