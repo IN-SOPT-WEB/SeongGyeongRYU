@@ -1,0 +1,28 @@
+.tag_input {
+  width: 200px;
+  margin: 5px;
+}
+
+.tag {
+  display: inline-block;
+  height: 30px;
+  padding: 10px;
+  margin: 5px;
+
+  background-color: #f8f9fa;
+  color: #12b886;
+
+  border-radius: 1rem;
+
+  line-height: 30px;
+  text-align: center;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.tag_form {
+  display: flex;
+  flex-wrap: wrap;
+}
