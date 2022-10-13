@@ -44,9 +44,12 @@
           search
         </span>
 
-        <input class="header_login" type="button" value="로그인" />
+        <a href="write.html">
+          <input class="header_login" type="button" value="새 글 작성" />
+        </a>
       </div>
     </header>
+
     <nav class="nav">
       <div class="nav_element_left">
         <a class="nav_element_trending_a">
@@ -72,14 +75,45 @@
             <p>최신</p>
           </div>
         </a>
-
-        <select class="nav_element_select">
-          <option value="오늘">오늘</option>
-          <option value="이번 주" selected>이번 주</option>
-          <option value="이번 달">이번 달</option>
-          <option value="올해">올해</option>
-        </select>
       </div>
+
+
+
+      <div class="nav_period">
+        <button class="nav_period_btn">
+          이번 주
+          <span class="material-symbols-outlined"> arrow_drop_down </span></button>
+        </button>
+      </div>
+
+      <ul class="nav_period_dropdown">
+          <li>
+            <button type="button" value="today" class="nav_period_dropdown_option">
+              오늘
+            </button>
+          </li>
+          <li>
+            <button type="button" value="this-week" class="nav_period_dropdown_option selected">
+              이번 주
+            </button>
+
+          </li>
+          <li>
+            <button type="button" value="this-month" class="nav_period_dropdown_option">
+              이번 달
+            </button>
+
+          </li>
+          <li>
+            <button type="button" value="this-year" class="nav_period_dropdown_option">
+              올해
+            </button>
+
+          </li>
+      </ul>
+
+
+
 
       <span class="material-symbols-outlined" style="margin-left: auto">
         more_vert
@@ -105,7 +139,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -124,7 +158,7 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -144,7 +178,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -163,7 +197,7 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -183,7 +217,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -202,47 +236,7 @@
             </span>
             323
           </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <a class="card_thumbnail">
-          <img
-            class="card_thumbnail_img"
-            src="img/cherryMaroo.jpeg"
-            alt="체리마루가 되는 법"
-          />
-        </a>
-
-        <a class="card_main_a">
-          <div class="card_main">
-            <h3 class="card_title">체리마루가 되려면 어떻게 해야할까?</h3>
-            <p class="card_dsc">체리마루가 되자!</p>
-
-            <p class="card_date">3일 전 / 10개의 댓글</p>
-          </div>
-        </a>
-
-        <div class="card_bottom">
-          <a class="card_bottom_user">
-            <img
-              class="card_bottom_img"
-              src="img/childhood.JPG"
-              alt="profile img"
-            />
-            <span>by <strong>SeongGyeong</strong></span>
-          </a>
-
-          <div class="card_bottom_like">
-            <span
-              class="material-symbols-outlined"
-              style="font-size: 1.25rem; margin: 0.25rem"
-            >
-              favorite
-            </span>
-            323
-          </div>
-        </div>
+        </footer>
       </article>
 
       <article class="card">
@@ -263,7 +257,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -282,7 +276,47 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
+      </article>
+
+      <article class="card">
+        <a class="card_thumbnail">
+          <img
+            class="card_thumbnail_img"
+            src="img/cherryMaroo.jpeg"
+            alt="체리마루가 되는 법"
+          />
+        </a>
+
+        <a class="card_main_a">
+          <div class="card_main">
+            <h3 class="card_title">체리마루가 되려면 어떻게 해야할까?</h3>
+            <p class="card_dsc">체리마루가 되자!</p>
+
+            <p class="card_date">3일 전 / 10개의 댓글</p>
+          </div>
+        </a>
+
+        <footer class="card_bottom">
+          <a class="card_bottom_user">
+            <img
+              class="card_bottom_img"
+              src="img/childhood.JPG"
+              alt="profile img"
+            />
+            <span>by <strong>SeongGyeong</strong></span>
+          </a>
+
+          <div class="card_bottom_like">
+            <span
+              class="material-symbols-outlined"
+              style="font-size: 1.25rem; margin: 0.25rem"
+            >
+              favorite
+            </span>
+            323
+          </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -302,7 +336,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -321,7 +355,7 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -341,7 +375,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -360,7 +394,7 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -380,7 +414,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img
               class="card_bottom_img"
@@ -399,7 +433,7 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
       </article>
       <article class="card">
         <a class="card_thumbnail">
@@ -418,7 +452,7 @@
           </div>
         </a>
 
-        <div class="card_bottom">
+        <footer class="card_bottom">
           <a class="card_bottom_user">
             <img class="card_bottom_img" src="img/childhood.JPG" />
             <span>by <strong>SeongGyeong</strong></span>
@@ -433,8 +467,19 @@
             </span>
             323
           </div>
-        </div>
+        </footer>
+      </article>
+
+     <article class="card_modal">
+        <a class="card_main_a">
+          <div class="card_main">
+            <h3 class="card_title">체리마루가 되려면 어떻게 해야할까?</h3>
+            <p class="card_dsc">체리마루가 되자!</p>
+            <p class="card_date">3일 전 / 10개의 댓글</p>
+          </div>
+        </a>
       </article>
     </section>
   </body>
+  <script src="velog.js"></script>
 </html>
