@@ -57,3 +57,26 @@ cards.forEach((card) => {
     });
   });
 });
+
+// 슬라이더 버튼 클릭하면 샥 넘어가게
+const sliderWrap = document.querySelector(".slider_card_wrap");
+const sliderLeftBtn = document.querySelector(".slider_left_btn");
+const sliderRightBtn = document.querySelector(".slider_right_btn");
+let currentNum = 1;
+let position = 0;
+
+sliderLeftBtn.addEventListener("click", () => {
+  if (currentNum <= 1) return;
+  position += 1056;
+  sliderWrap.style.transform = `translateX(${position}px)`;
+  currentNum -= 1;
+  console.log(currentNum);
+});
+
+sliderRightBtn.addEventListener("click", () => {
+  if (currentNum >= 3) return;
+  position -= 1056;
+  sliderWrap.style.transform = `translateX(${position}px)`;
+  currentNum += 1;
+  console.log(currentNum);
+});
