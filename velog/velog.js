@@ -3,7 +3,6 @@ const dropDownBtn = document.querySelector(".nav_period_btn");
 const dropDownMenu = document.querySelector(".nav_period_dropdown");
 
 const options = document.querySelectorAll(".nav_period_dropdown_option");
-console.log(options);
 
 dropDownBtn.addEventListener("click", () => {
   dropDownMenu.classList.toggle("show");
