@@ -157,7 +157,7 @@ body {
 
   position: absolute;
   top: 10rem;
-  left: 8rem;
+  left: 21rem;
 
   z-index: 2;
 }
@@ -344,10 +344,6 @@ body {
 .card_modal_delete_btn {
   border: none;
   background-color: transparent;
-}
-
-.showshow {
-  display: block;
 }
 
 /* 슬라이더 */

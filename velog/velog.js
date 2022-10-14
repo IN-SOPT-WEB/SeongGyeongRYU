@@ -9,6 +9,7 @@ dropDownBtn.addEventListener("click", () => {
   dropDownMenu.classList.toggle("show");
 });
 
+// 이게 왜 안되는 지 생각하는 중입니다..
 // dropDownBtn.addEventListener("blur", () => {
 //   dropDownMenu.classList.remove("show");
 // });
@@ -70,7 +71,6 @@ sliderLeftBtn.addEventListener("click", () => {
   position += 1056;
   sliderWrap.style.transform = `translateX(${position}px)`;
   currentNum -= 1;
-  console.log(currentNum);
 });
 
 sliderRightBtn.addEventListener("click", () => {
@@ -78,5 +78,4 @@ sliderRightBtn.addEventListener("click", () => {
   position -= 1056;
   sliderWrap.style.transform = `translateX(${position}px)`;
   currentNum += 1;
-  console.log(currentNum);
 });
