@@ -31,13 +31,14 @@ options.forEach((option) => {
 //카드 클릭하면 모달
 const cards = document.querySelectorAll(".card");
 const cardSection = document.querySelector(".card_section");
+const body = document.querySelector("body");
 
 cards.forEach((card) => {
   card.addEventListener("click", (event) => {
     const modal = event.currentTarget.cloneNode(true);
     const modalWrap = document.createElement("div");
     modalWrap.setAttribute("class", "modal_wrap");
-    cardSection.appendChild(modalWrap);
+    body.appendChild(modalWrap);
 
     modal.setAttribute("class", "card_modal");
     modalWrap.appendChild(modal);
@@ -47,8 +48,7 @@ cards.forEach((card) => {
     deleteBtn.innerText = "❌";
     modalWrap.appendChild(deleteBtn);
 
-    //페이지 스크롤 막기
-    const body = document.querySelector("body");
+    // 페이지 스크롤 막기
     body.classList.add("scrollLock");
 
     deleteBtn.addEventListener("click", () => {
