@@ -30,13 +30,30 @@ options.forEach((option) => {
 
 //카드 클릭하면 모달
 const cards = document.querySelectorAll(".card");
-const modal = document.querySelector(".card_modal");
+const cardSection = document.querySelector(".card_section");
 
 cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    console.log(modal);
-    modal.classList.add("showshow");
-    // modal.classList.add("show");
-    //  이거 왜 안먹지
+  card.addEventListener("click", (event) => {
+    const modal = event.currentTarget.cloneNode(true);
+    const modalWrap = document.createElement("div");
+    modalWrap.setAttribute("class", "modal_wrap");
+    cardSection.appendChild(modalWrap);
+
+    modal.setAttribute("class", "card_modal");
+    modalWrap.appendChild(modal);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("class", "card_modal_delete_btn");
+    deleteBtn.innerText = "❌";
+    modalWrap.appendChild(deleteBtn);
+
+    //페이지 스크롤 막기
+    const body = document.querySelector("body");
+    body.classList.add("scrollLock");
+
+    deleteBtn.addEventListener("click", () => {
+      modalWrap.remove();
+      body.classList.remove("scrollLock");
+    });
   });
 });
