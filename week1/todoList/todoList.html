@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>체리마루가 되자</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="header_title">
+      <h2>🍒 체리마루가 되자 🍒</h2>
+    </header>
+    <nav class="nav">
+      <button class="nav_todayOnly">오늘만 보기</button>
+      <button class="nav_tmrOnly">내일만 보기</button>
+      <button class="nav_all">함께 보기</button>
+    </nav>
+    <main class="main_container">
+      <section class="main_left">
+        <h3 class="main_title">오늘 할 일</h3>
+        <ul class="main_todo_wrap"></ul>
+
+        <form class="main_input">
+          <input
+            class="main_inputbox"
+            type="text"
+            placeholder="todo를 입력해주세요"
+          />
+          <input class="main_input_btn" type="button" value="&#x2b;" />
+        </form>
+      </section>
+
+      <section class="main_right">
+        <h3 class="main_title">내일 할 일</h3>
+        <ul class="main_todo_wrap">
+          <li class="main_todo">
+            <h4>🧺빨래하기🧺</h4>
+            <button class="main_delete">🗑</button>
+          </li>
+          <li class="main_todo">
+            <h4>📚독서독서📚</h4>
+            <button class="main_delete">🗑</button>
+          </li>
+        </ul>
+
+        <form class="main_input">
+          <input
+            class="main_inputbox"
+            type="text"
+            placeholder="todo를 입력해주세요"
+          />
+          <input class="main_input_btn" type="button" value="&#x2b;" />
+        </form>
+      </section>
+    </main>
+    <footer class="bottom"></footer>
+  </body>
+  <script src="todoList.js"></script>
+</html>
