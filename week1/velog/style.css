@@ -169,6 +169,7 @@ body {
 .nav_period_dropdown_option {
   width: 12rem;
   height: 2.5rem;
+
   border: none;
   border-bottom: #f1f3f5 solid 1px;
   line-height: 2rem;

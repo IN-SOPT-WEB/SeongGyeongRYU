@@ -17,8 +17,10 @@ const savedTags = localStorage.getItem(TAGS_KEY);
 if (savedTags != null) {
   //JSON.parse : 로컬스토리지에서 가져온 배열 모양의 스트링을 진짜 배열로 만들어줌
   const parsedTags = JSON.parse(savedTags);
+
   //write.js를 실행할 때마다 tags가 빈 배열로 초기화되는 것을 보완해주는 역할 (이전 기록을 살려내는 역할)
   tags = parsedTags;
+
   //forEach : paintTag의 인자로 parsedTags의 요소를 하나씩 넘겨줌
   parsedTags.forEach(paintTag); //새로고침 할 때마다 이전에 추가한 요소를 paint해주는 역할
 }
