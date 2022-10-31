@@ -1,8 +1,16 @@
-import React from "react";
+import styled from "styled-components";
 
+const Title = styled.header`
+  display: flex;
+  justify-content: center;
 
-export default function header(props) {
-  const { name } = props;
-  return <div>내 header의 이름은 {name}이야</div>;
+  margin: 20px;
+
+  font-size: 30px;
+`;
+
+function Header() {
+  return <Title>To the world! 여긴 NCT! 제가 누구일까요?</Title>;
 }
 
+export default Header;
