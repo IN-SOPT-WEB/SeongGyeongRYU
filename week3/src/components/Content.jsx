@@ -8,29 +8,56 @@ optionList.sort(() => Math.random() - 0.5);
 function Content() {
   const [stage, setStage] = useState(1);
   const [isOver, setIsOver] = useState(0);
-  const [isCorrect, setIsCorrect] = useState(0);
 
   function checkAnswer(answer) {
-    if (answer === quizArr[stage - 1].ans) setStage(stage + 1);
-    else {
-      console.log("다시 시도하세요!");
+    if (answer === quizArr[stage - 1].ans) {
+      if (stage !== quizArr.length) {
+        //정답! 다음 스테이지 모달뜨게
+        setStage(stage + 1);
+      } else {
+        setIsOver(1);
+      }
+    } else {
+      //다시 도전하세요 모달 뜨게
+      console.log("다시 도전하세요!");
     }
+  }
+
+  function handleReload() {
+    window.location.reload();
+  }
+
+  function Quiz() {
+    if (isOver) return <EndGame>끝!</EndGame>;
+    else
+      return (
+        <div>
+          <QuizWrap>
+            <QuizImg src={quizArr[stage - 1].src} />
+            <QuizAnsOption>
+              {optionList.map((option) => {
+                return (
+                  // <OptionButton key={option} onClick={checkAnswer(option)}>
+                  <OptionButton
+                    key={option}
+                    onClick={() => checkAnswer(option)}
+                  >
+                    {option}
+                  </OptionButton>
+                );
+              })}
+            </QuizAnsOption>
+          </QuizWrap>
+        </div>
+      );
   }
 
   return (
     <div>
       <ContentWrap>
         <ScoreBoard>Stage {stage}</ScoreBoard>
-        <QuizImg src={quizArr[stage - 1].src} />
-        <QuizAnsOption>
-          {optionList.map((option) => {
-            return (
-              <OptionButton key={option} onClick={() => checkAnswer(option)}>
-                {option}
-              </OptionButton>
-            );
-          })}
-        </QuizAnsOption>
+        <Quiz></Quiz>
+        <RestartButton onClick={() => handleReload()}>Restart!</RestartButton>
       </ContentWrap>
     </div>
   );
@@ -39,10 +66,6 @@ function Content() {
 const ContentWrap = styled.div`
   margin: 0;
   padding: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const ScoreBoard = styled.nav`
@@ -55,6 +78,16 @@ const ScoreBoard = styled.nav`
   line-height: 8vh;
 `;
 
+const QuizWrap = styled.div`
+  width: 100vw;
+  height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const QuizImg = styled.img`
   width: 320px;
   height: 420px;
@@ -63,11 +96,8 @@ const QuizImg = styled.img`
 `;
 
 const QuizAnsOption = styled.div`
-  width: 50vw;
-
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 `;
 
 const OptionButton = styled.button`
@@ -77,15 +107,42 @@ const OptionButton = styled.button`
   margin: 10px;
   border-radius: 20px;
   border: none;
-  background-color: rgb(121, 241, 22);
+  background-color: rgb(200, 241, 22);
 
   font-size: 18px;
   font-weight: 500;
 
   &:hover {
-    background-color: rgba(121, 241, 22, 0.5);
+    background-color: rgba(255, 241, 50);
     cursor: pointer;
   }
+`;
+
+const RestartButton = styled.button`
+  width: 100vw;
+  height: 8vh;
+  background-color: rgb(121, 241, 22);
+
+  font-size: 25px;
+  text-align: center;
+  line-height: 8vh;
+
+  border: none;
+  margin-top: 5px;
+
+  &:hover {
+    background-color: rgba(121, 241, 22, 0.6);
+    cursor: pointer;
+  }
+`;
+
+const EndGame = styled.div`
+  width: 100vw;
+  height: 70vh;
+
+  font-size: 100px;
+  text-align: center;
+  line-height: 70vh;
 `;
 
 export default Content;
