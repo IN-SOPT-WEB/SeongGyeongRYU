@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect } from "react";
 import { quizArr, optionList } from "./quizInfo";
 
 quizArr.sort(() => Math.random() - 0.5);
@@ -29,27 +29,23 @@ function Content() {
 
   function Quiz() {
     if (isOver) return <EndGame>끝!</EndGame>;
-    else
-      return (
-        <div>
-          <QuizWrap>
-            <QuizImg src={quizArr[stage - 1].src} />
-            <QuizAnsOption>
-              {optionList.map((option) => {
-                return (
-                  // <OptionButton key={option} onClick={checkAnswer(option)}>
-                  <OptionButton
-                    key={option}
-                    onClick={() => checkAnswer(option)}
-                  >
-                    {option}
-                  </OptionButton>
-                );
-              })}
-            </QuizAnsOption>
-          </QuizWrap>
-        </div>
-      );
+    return (
+      <div>
+        <QuizWrap>
+          <QuizImg src={quizArr[stage - 1].src} />
+          <QuizAnsOption>
+            {optionList.map((option) => {
+              return (
+                // <OptionButton key={option} onClick={checkAnswer(option)}>
+                <OptionButton key={option} onClick={() => checkAnswer(option)}>
+                  {option}
+                </OptionButton>
+              );
+            })}
+          </QuizAnsOption>
+        </QuizWrap>
+      </div>
+    );
   }
 
   return (
@@ -64,12 +60,14 @@ function Content() {
 }
 
 const ContentWrap = styled.div`
-  margin: 0;
+  max-width: 620px;
+
+  margin: 0 auto;
   padding: 0;
 `;
 
 const ScoreBoard = styled.nav`
-  width: 100vw;
+  width: 100%;
   height: 8vh;
   background-color: #79f116;
 
@@ -79,8 +77,8 @@ const ScoreBoard = styled.nav`
 `;
 
 const QuizWrap = styled.div`
-  width: 100vw;
-  height: 70vh;
+  width: 100%;
+  height: 74vh;
 
   display: flex;
   flex-direction: column;
@@ -92,19 +90,21 @@ const QuizImg = styled.img`
   width: 320px;
   height: 420px;
 
-  margin: 15px;
+  margin: 10px;
 `;
 
 const QuizAnsOption = styled.div`
   display: flex;
   justify-content: center;
+
+  flex-wrap: wrap;
 `;
 
 const OptionButton = styled.button`
   width: 120px;
   height: 45px;
 
-  margin: 10px;
+  margin: 5px;
   border-radius: 20px;
   border: none;
   background-color: rgb(200, 241, 22);
@@ -119,7 +119,7 @@ const OptionButton = styled.button`
 `;
 
 const RestartButton = styled.button`
-  width: 100vw;
+  width: 100%;
   height: 8vh;
   background-color: rgb(121, 241, 22);
 
@@ -137,8 +137,8 @@ const RestartButton = styled.button`
 `;
 
 const EndGame = styled.div`
-  width: 100vw;
-  height: 70vh;
+  max-width: 620px;
+  height: 74vh;
 
   font-size: 100px;
   text-align: center;
