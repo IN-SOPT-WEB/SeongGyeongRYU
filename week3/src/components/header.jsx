@@ -6,7 +6,7 @@ const Title = styled.header`
 
   margin: 20px;
 
-  font-size: 30px;
+  font-size: 28px;
 `;
 
 function Header() {

@@ -1,7 +1,7 @@
 import ReactDom from "react-dom";
 
-const ModalPortal = (children) => {
-  const modalRoot = document.querySelector(".modal-root");
+const ModalPortal = ({ children }) => {
+  const modalRoot = document.getElementById("modal-root");
   return ReactDom.createPortal(children, modalRoot);
 };
 

@@ -1,27 +1,55 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import { quizArr, optionList } from "./quizInfo";
-
-quizArr.sort(() => Math.random() - 0.5);
-optionList.sort(() => Math.random() - 0.5);
+import { quizList } from "./QuizInfo";
 
 function Content() {
-  const [stage, setStage] = useState(1);
-  const [isOver, setIsOver] = useState(0);
+  //문제
+  const [quizArr, setQuizArr] = useState(quizList);
+  //선지
+  const [optionList, setOptionList] = useState(quizArr.slice(0, 5));
+  const [answer, setAnswer] = useState(optionList[parseInt(Math.random() * 5)]);
 
-  function checkAnswer(answer) {
-    if (answer === quizArr[stage - 1].ans) {
-      if (stage !== quizArr.length) {
-        //정답! 다음 스테이지 모달뜨게
+  //단계
+  const [stage, setStage] = useState(1);
+  const [isOver, setIsOver] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+
+  //모달
+  const [isShown, setIsShown] = useState(false);
+
+  useEffect(() => {
+    setOptionList(quizArr.slice(0, 5));
+  }, [quizArr]);
+
+  useEffect(() => {
+    setAnswer(optionList[parseInt(Math.random() * 5)]);
+  }, [optionList]);
+
+  //답 맞는지 확인하고
+  //맞으면 stage + 1 , 맞았습니다 모달 띄우기
+  //틀리면 다시 도전하라는 모달 띄우기
+  function checkAnswer(chosen) {
+    //맞았을 떄
+    if (chosen === answer.ans) {
+      setIsCorrect(true);
+      setIsShown(true);
+      if (stage !== quizList.length) {
         setStage(stage + 1);
       } else {
-        setIsOver(1);
+        setIsOver(true);
       }
-    } else {
-      //다시 도전하세요 모달 뜨게
-      console.log("다시 도전하세요!");
     }
+    //틀렸을 때
+    else {
+      setIsShown(true);
+      // <Modal isCorrect={isCorrect}></Modal>;
+    }
+
+    setQuizArr(quizArr.sort(() => Math.random() - 0.5));
   }
+  console.log(quizArr);
+  console.log(answer);
+  console.log(optionList);
 
   function handleReload() {
     window.location.reload();
@@ -32,13 +60,16 @@ function Content() {
     return (
       <div>
         <QuizWrap>
-          <QuizImg src={quizArr[stage - 1].src} />
+          <QuizImg src={answer.src} />
           <QuizAnsOption>
             {optionList.map((option) => {
               return (
                 // <OptionButton key={option} onClick={checkAnswer(option)}>
-                <OptionButton key={option} onClick={() => checkAnswer(option)}>
-                  {option}
+                <OptionButton
+                  key={option.ans}
+                  onClick={() => checkAnswer(option.ans)}
+                >
+                  {option.ans}
                 </OptionButton>
               );
             })}
@@ -68,12 +99,12 @@ const ContentWrap = styled.div`
 
 const ScoreBoard = styled.nav`
   width: 100%;
-  height: 8vh;
+  height: 7vh;
   background-color: #79f116;
 
   font-size: 25px;
   text-align: center;
-  line-height: 8vh;
+  line-height: 7vh;
 `;
 
 const QuizWrap = styled.div`
@@ -101,10 +132,10 @@ const QuizAnsOption = styled.div`
 `;
 
 const OptionButton = styled.button`
-  width: 120px;
+  width: 100px;
   height: 45px;
 
-  margin: 5px;
+  margin: 15px 5px 5px 5px;
   border-radius: 20px;
   border: none;
   background-color: rgb(200, 241, 22);
@@ -120,15 +151,14 @@ const OptionButton = styled.button`
 
 const RestartButton = styled.button`
   width: 100%;
-  height: 8vh;
+  height: 7vh;
   background-color: rgb(121, 241, 22);
 
   font-size: 25px;
   text-align: center;
-  line-height: 8vh;
+  line-height: 7vh;
 
   border: none;
-  margin-top: 5px;
 
   &:hover {
     background-color: rgba(121, 241, 22, 0.6);

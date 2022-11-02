@@ -1,23 +1,23 @@
-import img1 from "../assets/마크.jpeg";
-import img2 from "../assets/런쥔.jpeg";
-import img3 from "../assets/제노.jpeg";
-import img4 from "../assets/해찬.jpeg";
-import img5 from "../assets/재민.jpeg";
-import img6 from "../assets/천러.JPG";
-import img7 from "../assets/지성.jpeg";
+import mark from "../img/마크.jpeg";
+import renjun from "../img/런쥔.jpeg";
+import jeno from "../img/제노.jpeg";
+import jaemin from "../img/재민.jpeg";
+import haechan from "../img/해찬.jpeg";
+import chenle from "../img/천러.JPG";
+import jisung from "../img/지성.jpeg";
 
-const quizArr = [
-  { src: img1, ans: "마크" },
-  { src: img2, ans: "런쥔" },
-  { src: img3, ans: "제노" },
-  { src: img4, ans: "해찬" },
-  { src: img5, ans: "재민" },
-  { src: img6, ans: "천러" },
-  { src: img7, ans: "지성" },
+const quizList = [
+  { src: mark, ans: "마크" },
+  { src: renjun, ans: "런쥔" },
+  { src: jeno, ans: "제노" },
+  { src: haechan, ans: "해찬" },
+  { src: jaemin, ans: "재민" },
+  { src: chenle, ans: "천러" },
+  { src: jisung, ans: "지성" },
 ];
 
-const optionList = quizArr.map((quiz) => {
-  return quiz.ans;
+const optionList = quizList.map((option) => {
+  return option.ans;
 });
 
-export { quizArr, optionList };
+export { quizList, optionList };
