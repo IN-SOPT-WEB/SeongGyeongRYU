@@ -1,28 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ModalPortal from "./ModalPortal";
 import styled from "styled-components";
+import Confetti from "./Confetti";
+//https://www.youtube.com/watch?v=QHFkVpB1yr0
 
-const Modal = ({ isShown, isCorrect, handleModalClose }) => {
+const Modal = ({ isShown, isCorrect, handleModal }) => {
   if (isShown)
     return (
       <ModalPortal>
+        <Confetti></Confetti>
         <ModalContainer>
-          {{ isCorrect } ? "🎉정답입니다🎉" : "땡! 다시 도전해보세요🥲"}
-          <CloseBtn onClick={handleModalClose}>🆇</CloseBtn>
+          {isCorrect ? "정답입니다 🎉" : "땡! 다시 해보세요 🥲"}
+          <CloseBtn onClick={handleModal}>🆇</CloseBtn>
         </ModalContainer>
       </ModalPortal>
     );
 };
-
-// const Background = styled.div`
-//   width: 620px;
-//   height: 74vh;
-//   background-color: rgba(0, 0, 0, 0.3);
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
 
 const ModalContainer = styled.div`
   width: 300px;

@@ -15,67 +15,71 @@ function Content() {
 
   //끝났음,
   const [isOver, setIsOver] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(true);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   //모달
   const [isShown, setIsShown] = useState(false);
 
-  //답 맞는지 확인하고
-  //맞으면 stage + 1 , 맞았습니다 모달 띄우기
-  //틀리면 다시 도전하라는 모달 띄우기
   function checkAnswer(chosen) {
     //맞았을 떄
-
     if (chosen === answer.ans) {
-      console.log(chosen);
-      console.log(answer.ans);
       setIsCorrect(true);
-      // setIsShown(true);
+
+      setAnswer(quizList[i]);
+      answer.option.sort(() => Math.random() - 0.5);
+
       i++;
+
       if (stage !== quizList.length) {
         setStage(stage + 1);
       } else {
         setIsOver(true);
       }
     } else {
-      // setIsShown(true);
-      // <Modal isCorrect={isCorrect}></Modal>;
-      console.log("틀렸다임마");
+      setIsCorrect(false);
     }
-
-    setAnswer(quizList[i]);
   }
 
   function handleReload() {
     window.location.reload();
   }
 
+  function handleModal() {
+    setIsShown(!isShown);
+  }
+
   function Quiz({ isOver, isCorrect }) {
     if (isOver) return <EndGame>끝!</EndGame>;
-
-    //이게 Content.jsx의 리턴이 아니라 Quiz의 리턴!
     return (
       <div>
         <QuizWrap>
           <QuizImg src={answer.src} />
           <QuizAnsOption>
-            {answer.option
-              .sort(() => Math.random() - 0.5)
-              .map((opt) => {
-                return (
-                  // <OptionButton key={option} onClick={checkAnswer(option)}>
-                  <OptionButton key={opt} onClick={() => checkAnswer(opt)}>
-                    {opt}
-                  </OptionButton>
-                );
-              })}
+            {answer.option.map((opt) => {
+              return (
+                <OptionButton
+                  key={opt}
+                  onClick={() => {
+                    checkAnswer(opt);
+                    handleModal();
+                  }}
+                >
+                  {opt}
+                </OptionButton>
+              );
+            })}
           </QuizAnsOption>
+          {isShown && (
+            <Modal
+              isShown={isShown}
+              isCorrect={isCorrect}
+              handleModal={() => handleModal()}
+            />
+          )}
         </QuizWrap>
       </div>
     );
   }
-
-  useEffect(() => {}, [isCorrect]);
 
   return (
     <div>
