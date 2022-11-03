@@ -1,89 +1,87 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { quizList } from "./QuizInfo";
+import Modal from "./Modal";
+
+quizList.sort(() => Math.random() - 0.5);
+let i = 0;
 
 function Content() {
-  //문제
-  const [quizArr, setQuizArr] = useState(quizList);
-  //선지
-  const [optionList, setOptionList] = useState(quizArr.slice(0, 5));
-  const [answer, setAnswer] = useState(optionList[parseInt(Math.random() * 5)]);
+  //답
+  const [answer, setAnswer] = useState(quizList[i]);
 
   //단계
   const [stage, setStage] = useState(1);
+
+  //끝났음,
   const [isOver, setIsOver] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(true);
 
   //모달
   const [isShown, setIsShown] = useState(false);
-
-  useEffect(() => {
-    setOptionList(quizArr.slice(0, 5));
-  }, [quizArr]);
-
-  useEffect(() => {
-    setAnswer(optionList[parseInt(Math.random() * 5)]);
-  }, [optionList]);
 
   //답 맞는지 확인하고
   //맞으면 stage + 1 , 맞았습니다 모달 띄우기
   //틀리면 다시 도전하라는 모달 띄우기
   function checkAnswer(chosen) {
     //맞았을 떄
+
     if (chosen === answer.ans) {
+      console.log(chosen);
+      console.log(answer.ans);
       setIsCorrect(true);
-      setIsShown(true);
+      // setIsShown(true);
+      i++;
       if (stage !== quizList.length) {
         setStage(stage + 1);
       } else {
         setIsOver(true);
       }
-    }
-    //틀렸을 때
-    else {
-      setIsShown(true);
+    } else {
+      // setIsShown(true);
       // <Modal isCorrect={isCorrect}></Modal>;
+      console.log("틀렸다임마");
     }
 
-    setQuizArr(quizArr.sort(() => Math.random() - 0.5));
+    setAnswer(quizList[i]);
   }
-  console.log(quizArr);
-  console.log(answer);
-  console.log(optionList);
 
   function handleReload() {
     window.location.reload();
   }
 
-  function Quiz() {
+  function Quiz({ isOver, isCorrect }) {
     if (isOver) return <EndGame>끝!</EndGame>;
+
+    //이게 Content.jsx의 리턴이 아니라 Quiz의 리턴!
     return (
       <div>
         <QuizWrap>
           <QuizImg src={answer.src} />
           <QuizAnsOption>
-            {optionList.map((option) => {
-              return (
-                // <OptionButton key={option} onClick={checkAnswer(option)}>
-                <OptionButton
-                  key={option.ans}
-                  onClick={() => checkAnswer(option.ans)}
-                >
-                  {option.ans}
-                </OptionButton>
-              );
-            })}
+            {answer.option
+              .sort(() => Math.random() - 0.5)
+              .map((opt) => {
+                return (
+                  // <OptionButton key={option} onClick={checkAnswer(option)}>
+                  <OptionButton key={opt} onClick={() => checkAnswer(opt)}>
+                    {opt}
+                  </OptionButton>
+                );
+              })}
           </QuizAnsOption>
         </QuizWrap>
       </div>
     );
   }
 
+  useEffect(() => {}, [isCorrect]);
+
   return (
     <div>
       <ContentWrap>
         <ScoreBoard>Stage {stage}</ScoreBoard>
-        <Quiz></Quiz>
+        <Quiz isOver={isOver} isCorrect={isCorrect}></Quiz>
         <RestartButton onClick={() => handleReload()}>Restart!</RestartButton>
       </ContentWrap>
     </div>
