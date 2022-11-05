@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { quizList } from "./QuizInfo";
 import Modal from "./Modal";
 
@@ -23,12 +23,11 @@ function Content() {
   function checkAnswer(chosen) {
     //맞았을 떄
     if (chosen === answer.ans) {
+      i++;
       setIsCorrect(true);
 
       setAnswer(quizList[i]);
       answer.option.sort(() => Math.random() - 0.5);
-
-      i++;
 
       if (stage !== quizList.length) {
         setStage(stage + 1);
