@@ -46,6 +46,7 @@ for (let i = 0; i < input.length; i++) {
 
 function addToDo(ul, inputContent) {
   const todo = inputContent.value;
+
   inputContent.value = "";
 
   const li = document.createElement("li");
