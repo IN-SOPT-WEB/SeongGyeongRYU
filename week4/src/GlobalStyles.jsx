@@ -6,7 +6,6 @@ ${reset}
 font
 *{
     box-sizing : border-box;
-    
 }
 
 body{

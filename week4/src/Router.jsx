@@ -8,8 +8,10 @@ export default function Router() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/search" element={<Search />}></Route>
-          <Route path="/search/:username" element={<UserInfo />}></Route>
+          <Route path="/search" element={<Search />}>
+            <Route path=":username" element={<UserInfo />}></Route>
+          </Route>
+          {/* <Route path="/search/:username" element={<UserInfo />}></Route> */}
         </Routes>
       </BrowserRouter>
     </>

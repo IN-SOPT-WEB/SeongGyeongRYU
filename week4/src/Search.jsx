@@ -1,19 +1,19 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 export default function Search() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
+  const history = [];
+
   const searchUsers = (username) => {
     navigate(`/search/${username}`);
-    console.log(username);
   };
 
   const handleChange = (e) => {
     setUsername(e.target.value);
-    console.log("어쩌구" + e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -23,6 +23,10 @@ export default function Search() {
       searchUsers(username);
       setUsername("");
     }
+  };
+
+  const showHistory = () => {
+    return;
   };
 
   return (
@@ -36,10 +40,11 @@ export default function Search() {
             placeholder="깃허브 유저명을 입력해주세요"
             value={username}
             onChange={handleChange}
+            onFocus={showHistory}
           ></SearchFrameInput>
-          <SearchButton type="submit"></SearchButton>
         </SearchForm>
       </SearchFrame>
+      <Outlet />
     </div>
   );
 }
@@ -83,9 +88,4 @@ const ResultFrame = styled.div`
   margin-top: 150px;
 
   background-color: #fff;
-`;
-
-const SearchButton = styled.button`
-  width: 300px;
-  height: 200px;
 `;
