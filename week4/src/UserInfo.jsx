@@ -39,18 +39,27 @@ export default function UserInfo() {
         <Loading />
       ) : (
         <ResultFrame>
-          <DeleteBtn onClick={() => navigate(-1)}>❎</DeleteBtn>
+          <DeleteBtn
+            type="button"
+            onClick={() => navigate(-1)}
+            value="❎"
+          ></DeleteBtn>
           <ProfilePic src={profileImg}></ProfilePic>
           <ProfileInfo>
-            <ProfileDetailInfoWrap>
-              <ProfileDetailInfo>{followingNum} following</ProfileDetailInfo>
-            </ProfileDetailInfoWrap>
-            <ProfileDetailInfoWrap>
-              <ProfileDetailInfo>{followerNum} follower</ProfileDetailInfo>
-            </ProfileDetailInfoWrap>
-            <ProfileDetailInfoWrap>
-              <ProfileDetailInfo>{repoNum} repo</ProfileDetailInfo>
-            </ProfileDetailInfoWrap>
+            <ProfileDetailInfo>
+              <ProfileDetailCargory>following </ProfileDetailCargory>
+              <ProfileDetailNum>{followingNum}</ProfileDetailNum>
+            </ProfileDetailInfo>
+
+            <ProfileDetailInfo>
+              <ProfileDetailCargory>follower </ProfileDetailCargory>
+              <ProfileDetailNum>{followerNum}</ProfileDetailNum>
+            </ProfileDetailInfo>
+
+            <ProfileDetailInfo>
+              <ProfileDetailCargory>repo</ProfileDetailCargory>
+              <ProfileDetailNum>{repoNum}</ProfileDetailNum>
+            </ProfileDetailInfo>
           </ProfileInfo>
         </ResultFrame>
       )}
@@ -74,15 +83,11 @@ const ResultFrame = styled.div`
   border-radius: 20px;
 
   background-color: #fff;
-
-  padding: 0;
 `;
 
 const ProfilePic = styled.img`
   width: 300px;
   height: 300px;
-
-  margin: 30px;
 `;
 
 const ProfileInfo = styled.div`
@@ -92,21 +97,32 @@ const ProfileInfo = styled.div`
   justify-content: space-evenly;
 `;
 
-const ProfileDetailInfoWrap = styled.div`
+const ProfileDetailInfo = styled.div`
   width: 200px;
   height: 200px;
   background-color: rgba(0, 70, 22, 0.5);
   border-radius: 20px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+const ProfileDetailCargory = styled.div`
   font-size: 50px;
 `;
 
-const ProfileDetailInfo = styled.div`
-  display: flex;
-  flex-direction: column;
+const ProfileDetailNum = styled.div`
+  font-size: 50px;
+  color: #fff;
 `;
 
-const DeleteBtn = styled.button`
+const DeleteBtn = styled.input`
+  height: 60px;
+  width: 60px;
+
+  display: inline;
   background-color: transparent;
   border: none;
 
@@ -115,4 +131,6 @@ const DeleteBtn = styled.button`
   margin-right: 20px;
 
   font-size: 50px;
+
+  cursor: pointer;
 `;
