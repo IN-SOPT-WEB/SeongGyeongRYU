@@ -1,16 +1,15 @@
 import { React, useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate, Outlet, useParams } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 export default function Search() {
-  const [inputName, setInputName] = useState("");
+  const [inputName, setInputName] = useState();
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem("history") || "[]")
   );
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
-  const { username } = useParams();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputName(e.target.value);
@@ -22,17 +21,9 @@ export default function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsOpen(false);
 
-    navigate(`/search/${inputName}`);
     setHistory([inputName, ...history]);
-
-    if (username === "") {
-    } else {
-      if (!history.includes(username)) {
-        setHistory((prev) => [...prev, username]);
-      }
-    }
+    navigate(`/search/${inputName}`);
   };
 
   const selectHistory = (_history) => {
@@ -133,7 +124,6 @@ const SearchSearch = styled.div``;
 const HistoryItemWrap = styled.div`
   width: 700px;
   display: flex;
-  /* flex-wrap: wrap; */
 `;
 
 const HistoryModal = styled.div`
