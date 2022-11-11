@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Spinner from "./assets/spinner.gif";
+import Run from "./assets/run.gif";
 
 export default function Loading() {
   return (
     <Background>
-      <img src={Spinner} alt="로딩중" width="15%" />
-      <LoadingText>로딩 중입니다. . . </LoadingText>
+      <img src={Run} alt="로딩중" width="15%" />
+      <LoadingText>로딩 중입니다. . .</LoadingText>
     </Background>
   );
 }
@@ -21,6 +21,7 @@ const Background = styled.div`
   z-index: 999;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -28,4 +29,8 @@ const Background = styled.div`
 const LoadingText = styled.div`
   text-align: center;
   font-size: 50px;
+
+  color: #fff;
+
+  margin: 30px;
 `;

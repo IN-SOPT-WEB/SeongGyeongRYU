@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Loading from "./Loading";
@@ -13,6 +13,8 @@ export default function UserInfo() {
   const [followingNum, setFollowingNum] = useState();
   const [followerNum, setFollowerNum] = useState();
   const [repoNum, setRepoNum] = useState();
+
+  const navigate = useNavigate();
 
   const getUser = async (username) => {
     setLoading(true);
@@ -33,40 +35,84 @@ export default function UserInfo() {
 
   return (
     <>
-      {loading ? <Loading /> : null}
-      <ResultFrame>
-        <ResultModal>
-          <img src={profileImg} />
-          <Following>following: {followingNum}명</Following>
-          <Follower>follower: {followerNum}명</Follower>
-          <RepoNum>repo: {repoNum}개</RepoNum>
-        </ResultModal>
-      </ResultFrame>
+      {loading ? (
+        <Loading />
+      ) : (
+        <ResultFrame>
+          <DeleteBtn onClick={() => navigate(-1)}>❎</DeleteBtn>
+          <ProfilePic src={profileImg}></ProfilePic>
+          <ProfileInfo>
+            <ProfileDetailInfoWrap>
+              <ProfileDetailInfo>{followingNum} following</ProfileDetailInfo>
+            </ProfileDetailInfoWrap>
+            <ProfileDetailInfoWrap>
+              <ProfileDetailInfo>{followerNum} follower</ProfileDetailInfo>
+            </ProfileDetailInfoWrap>
+            <ProfileDetailInfoWrap>
+              <ProfileDetailInfo>{repoNum} repo</ProfileDetailInfo>
+            </ProfileDetailInfoWrap>
+          </ProfileInfo>
+        </ResultFrame>
+      )}
     </>
   );
 }
 
 const ResultFrame = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-`;
 
-const ResultModal = styled.div`
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   width: 1200px;
-  height: 600px;
+  height: 650px;
   border-radius: 20px;
 
   background-color: #fff;
+
+  padding: 0;
 `;
 
-const Following = styled.div`
+const ProfilePic = styled.img`
+  width: 300px;
+  height: 300px;
+
+  margin: 30px;
+`;
+
+const ProfileInfo = styled.div`
+  width: 1200px;
+
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const ProfileDetailInfoWrap = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: rgba(0, 70, 22, 0.5);
+  border-radius: 20px;
+
   font-size: 50px;
 `;
 
-const Follower = styled.div`
-  font-size: 50px;
+const ProfileDetailInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-const RepoNum = styled.div`
+const DeleteBtn = styled.button`
+  background-color: transparent;
+  border: none;
+
+  align-self: flex-end;
+
+  margin-right: 20px;
+
   font-size: 50px;
 `;
