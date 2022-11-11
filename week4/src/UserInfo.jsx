@@ -88,6 +88,8 @@ const ResultFrame = styled.div`
 const ProfilePic = styled.img`
   width: 300px;
   height: 300px;
+
+  margin: 30px;
 `;
 
 const ProfileInfo = styled.div`
