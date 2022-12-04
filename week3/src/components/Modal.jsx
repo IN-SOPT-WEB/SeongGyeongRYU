@@ -8,7 +8,7 @@ const Modal = ({ isShown, isCorrect, handleModal }) => {
   if (isShown)
     return (
       <ModalPortal>
-        <Confetti></Confetti>
+        <Confetti isCorrect={isCorrect}></Confetti>
         <ModalContainer>
           {isCorrect ? "정답입니다 🎉" : "땡! 다시 해보세요 🥲"}
           <CloseBtn onClick={handleModal}>🆇</CloseBtn>

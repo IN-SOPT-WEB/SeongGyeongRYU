@@ -1,40 +1,36 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { quizList } from "./QuizInfo";
 import Modal from "./Modal";
 
 quizList.sort(() => Math.random() - 0.5);
-let i = 0;
 
 function Content() {
   //답
-  const [answer, setAnswer] = useState(quizList[i]);
+  const [answerIndex, setAnswerIndex] = useState(0);
+  const [answerOption, setAnswerOption] = useState(quizList[0]);
 
   //단계
   const [stage, setStage] = useState(1);
 
-  //끝났음,
   const [isOver, setIsOver] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
   //모달
   const [isShown, setIsShown] = useState(false);
 
-  function checkAnswer(chosen) {
-    //맞았을 떄
-    if (chosen === answer.ans) {
+  function checkAnswer(answerSelected) {
+    //맞았을 때
+    if (answerSelected === answerOption.answer) {
+      setAnswerIndex(answerIndex + 1);
+      setAnswerOption(quizList[answerIndex]);
+      console.log(answerIndex);
+      console.log(answerOption.answer);
       setIsCorrect(true);
 
-      setAnswer(quizList[i]);
-      answer.option.sort(() => Math.random() - 0.5);
+      answerOption.optionList.sort(() => Math.random() - 0.5);
 
-      i++;
-
-      if (stage !== quizList.length) {
-        setStage(stage + 1);
-      } else {
-        setIsOver(true);
-      }
+      stage !== quizList.length ? setStage(stage + 1) : setIsOver(true);
     } else {
       setIsCorrect(false);
     }
@@ -45,7 +41,7 @@ function Content() {
   }
 
   function handleModal() {
-    setIsShown(!isShown);
+    setIsShown((prevIsShown) => !prevIsShown);
   }
 
   function Quiz({ isOver, isCorrect }) {
@@ -53,9 +49,9 @@ function Content() {
     return (
       <div>
         <QuizWrap>
-          <QuizImg src={answer.src} />
+          <QuizImg src={answerOption.src} />
           <QuizAnsOption>
-            {answer.option.map((opt) => {
+            {answerOption.optionList.map((opt) => {
               return (
                 <OptionButton
                   key={opt}
@@ -145,9 +141,10 @@ const OptionButton = styled.button`
   font-size: 18px;
   font-weight: 500;
 
+  cursor: pointer;
+
   &:hover {
     background-color: rgba(255, 241, 50);
-    cursor: pointer;
   }
 `;
 
