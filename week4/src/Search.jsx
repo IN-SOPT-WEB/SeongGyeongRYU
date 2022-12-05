@@ -3,21 +3,23 @@ import styled from "styled-components";
 import { useNavigate, Outlet } from "react-router-dom";
 
 export default function Search() {
+  const navigate = useNavigate();
+
   const [inputName, setInputName] = useState();
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem("history") || "[]")
   );
+  //history 모달창 보이는지 아닌지
   const [isOpen, setIsOpen] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setInputName(e.target.value);
-  };
 
   useEffect(() => {
     localStorage.setItem("history", JSON.stringify(history));
   }, [history]);
+
+  //input에 입력된 값을 inputName으로
+  const handleChange = (e) => {
+    setInputName(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +51,8 @@ export default function Search() {
                 value={inputName}
                 onChange={handleChange}
                 onFocus={() => setIsOpen(true)}
+                // tabIndex로 historyModal을 input과 연관된 컴포넌트로 설정하고
+                // input이 onBlur 상태가 되면 Modal 끈다
                 onBlur={(e) => e.relatedTarget === null && setIsOpen(false)}
               ></SearchFrameInput>
               {isOpen ? (
