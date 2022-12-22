@@ -6,32 +6,56 @@ import Loading from "./Loading";
 
 export default function UserInfo() {
   const { username } = useParams();
+  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [profileImg, setProfileImg] = useState();
   const [followingNum, setFollowingNum] = useState();
   const [followerNum, setFollowerNum] = useState();
   const [repoNum, setRepoNum] = useState();
 
-  const navigate = useNavigate();
+  // const getUser = async (username) => {
+  //   //로딩화면 뜨도록
+  //   setLoading(true);
 
-  const getUser = async (username) => {
-    setLoading(true);
-    const response = await axios.get(
-      `https://api.github.com/users/${username}`
-    );
-    setLoading(false);
+  //   const response = await axios.get(
+  //     `https://api.github.com/users/${username}`
+  //   );
 
-    setProfileImg(response.data.avatar_url);
-    setFollowingNum(response.data.following);
-    setFollowerNum(response.data.followers);
-    setRepoNum(response.data.public_repos);
-  };
+  //   const mswResponse = await axios.get("api/user");
+
+  //   //axios.get 완료되면 로딩화면 끄기
+  //   setLoading(false);
+
+  //   setProfileImg(response.data.avatar_url);
+  //   setFollowingNum(response.data.following);
+  //   setFollowerNum(response.data.followers);
+  //   setRepoNum(response.data.public_repos);
+
+  // };
+
+  async function getMSWUser() {
+    const mswResponse = await axios.get("/api/user");
+
+    // setProfileImg(mswResponse.data.avatar_url);
+    // setFollowingNum(mswResponse.data.following);
+    // setFollowerNum(mswResponse.data.followers);
+    // setRepoNum(mswResponse.data.public_repos);
+
+    setProfileImg(mswResponse.data.avatar_url);
+    setFollowingNum(mswResponse.data.following);
+    setFollowerNum(mswResponse.data.followers);
+    setRepoNum(mswResponse.data.repos);
+  }
+
+  // useEffect(() => {
+  //   getUser(username);
+  // }, [username]);
 
   useEffect(() => {
-    getUser(username);
-  }, [username]);
+    getMSWUser();
+  });
 
   return (
     <>
