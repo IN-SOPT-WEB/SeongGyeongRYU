@@ -7,16 +7,16 @@ import Loading from "./Loading";
 export default function UserInfo() {
   const { username } = useParams();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [profileImg, setProfileImg] = useState();
-  const [followingNum, setFollowingNum] = useState();
-  const [followerNum, setFollowerNum] = useState();
-  const [repoNum, setRepoNum] = useState();
+  const [profileImg, setProfileImg] = useState<string>();
+  const [followingNum, setFollowingNum] = useState<number>();
+  const [followerNum, setFollowerNum] = useState<number>();
+  const [repoNum, setRepoNum] = useState<number>();
 
   const navigate = useNavigate();
 
-  const getUser = async (username) => {
+  const getUser = async (username: string | undefined) => {
     setLoading(true);
     const response = await axios.get(
       `https://api.github.com/users/${username}`
@@ -73,23 +73,22 @@ const ResultFrame = styled.div`
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 
   width: 1200px;
-  height: 650px;
+  height: 480px;
+
+  margin: 20px 0px;
   border-radius: 20px;
 
   background-color: #fff;
 `;
 
 const ProfilePic = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 
-  margin: 30px;
+  margin: 20px;
 `;
 
 const ProfileInfo = styled.div`
@@ -100,8 +99,8 @@ const ProfileInfo = styled.div`
 `;
 
 const ProfileDetailInfo = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
   background-color: rgba(0, 70, 22, 0.5);
   border-radius: 20px;
 
@@ -112,11 +111,11 @@ const ProfileDetailInfo = styled.div`
 `;
 
 const ProfileDetailCargory = styled.div`
-  font-size: 50px;
+  font-size: 40px;
 `;
 
 const ProfileDetailNum = styled.div`
-  font-size: 50px;
+  font-size: 40px;
   color: #fff;
 `;
 
@@ -124,11 +123,13 @@ const DeleteBtn = styled.input`
   height: 60px;
   width: 60px;
 
-  display: inline;
   background-color: transparent;
   border: none;
 
-  align-self: flex-end;
+  position: absolute;
+
+  right: 20px;
+  top: 20px;
 
   margin-right: 20px;
 

@@ -1,17 +1,17 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, Outlet } from "react-router-dom";
 
 export default function Search() {
-  const [inputName, setInputName] = useState();
-  const [history, setHistory] = useState(
+  const [inputName, setInputName] = useState<string>();
+  const [history, setHistory] = useState<Array<string | undefined>>(
     JSON.parse(localStorage.getItem("history") || "[]")
   );
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputName(e.target.value);
   };
 
@@ -19,19 +19,19 @@ export default function Search() {
     localStorage.setItem("history", JSON.stringify(history));
   }, [history]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setHistory([inputName, ...history]);
     navigate(`/search/${inputName}`);
   };
 
-  const selectHistory = (_history) => {
+  const selectHistory = (_history: string | undefined) => {
     navigate(`/search/${_history}`);
     setIsOpen(false);
   };
 
-  const deleteHistory = (_history) => {
+  const deleteHistory = (_history: string | undefined) => {
     setHistory((prev) => prev.filter((item) => item !== _history));
   };
 
@@ -87,7 +87,7 @@ const SearchWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 30px;
+  margin-top: 20px;
 `;
 const SearchFrame = styled.div`
   width: 1200px;
