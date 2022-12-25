@@ -3,30 +3,24 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Loading from "./Loading";
+import { iUserInfo } from "./types/index";
 
 export default function UserInfo() {
   const { username } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [profileImg, setProfileImg] = useState<string>();
-  const [followingNum, setFollowingNum] = useState<number>();
-  const [followerNum, setFollowerNum] = useState<number>();
-  const [repoNum, setRepoNum] = useState<number>();
-
-  const navigate = useNavigate();
+  const [userGithubInfo, setUserGithubInfo] = useState<iUserInfo>();
 
   const getUser = async (username: string | undefined) => {
     setLoading(true);
-    const response = await axios.get(
+    const response: iUserInfo = await axios.get(
       `https://api.github.com/users/${username}`
     );
     setLoading(false);
 
-    setProfileImg(response.data.avatar_url);
-    setFollowingNum(response.data.following);
-    setFollowerNum(response.data.followers);
-    setRepoNum(response.data.public_repos);
+    setUserGithubInfo(response);
   };
 
   useEffect(() => {
@@ -44,21 +38,23 @@ export default function UserInfo() {
             onClick={() => navigate(-1)}
             value="❎"
           ></DeleteBtn>
-          <ProfilePic src={profileImg}></ProfilePic>
+          <ProfilePic src={userGithubInfo?.avatar_url}></ProfilePic>
           <ProfileInfo>
             <ProfileDetailInfo>
               <ProfileDetailCargory>following </ProfileDetailCargory>
-              <ProfileDetailNum>{followingNum}</ProfileDetailNum>
+              <ProfileDetailNum>{userGithubInfo?.following}</ProfileDetailNum>
             </ProfileDetailInfo>
 
             <ProfileDetailInfo>
               <ProfileDetailCargory>follower </ProfileDetailCargory>
-              <ProfileDetailNum>{followerNum}</ProfileDetailNum>
+              <ProfileDetailNum>{userGithubInfo?.followers}</ProfileDetailNum>
             </ProfileDetailInfo>
 
             <ProfileDetailInfo>
               <ProfileDetailCargory>repo</ProfileDetailCargory>
-              <ProfileDetailNum>{repoNum}</ProfileDetailNum>
+              <ProfileDetailNum>
+                {userGithubInfo?.public_repos}
+              </ProfileDetailNum>
             </ProfileDetailInfo>
           </ProfileInfo>
         </ResultFrame>
