@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 export interface iHistoryProps {
-  history: Array<string | undefined>;
-  setHistory: Dispatch<SetStateAction<Array<string>>>;
+  history: string[];
+  setHistory: Dispatch<SetStateAction<string[]>>;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
@@ -17,12 +17,12 @@ export default function History({
 }: iHistoryProps) {
   const navigate = useNavigate();
 
-  const selectHistory = (_history: string | undefined) => {
+  const selectHistory = (_history: string) => {
     navigate(`/search/${_history}`);
     setIsOpen(false);
   };
 
-  const deleteHistory = (_history: string | undefined) => {
+  const deleteHistory = (_history: string) => {
     setHistory((prev: Array<string>) =>
       prev.filter((item) => item !== _history)
     );
@@ -34,11 +34,8 @@ export default function History({
         <HistoryModal tabIndex={0}>
           {history &&
             history.map((_history) => (
-              <HistoryItemWrap>
-                <HistoryItem
-                  key={_history}
-                  onClick={() => selectHistory(_history)}
-                >
+              <HistoryItemWrap key={_history}>
+                <HistoryItem onClick={() => selectHistory(_history)}>
                   {_history}
                 </HistoryItem>
                 <DeleteButton
@@ -78,6 +75,8 @@ const HistoryItem = styled.div`
   font-size: 20px;
 
   background-color: rgba(0, 70, 22, 0.6);
+
+  cursor: pointer;
 `;
 
 const DeleteButton = styled.button`

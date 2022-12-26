@@ -23,7 +23,8 @@ export default function Search() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (inputName && historyList) {
+    //중복처리도 같이 해주기
+    if (inputName && !historyList.includes(inputName)) {
       setHistoryList([inputName, ...historyList]);
     }
     navigate(`/search/${inputName}`);

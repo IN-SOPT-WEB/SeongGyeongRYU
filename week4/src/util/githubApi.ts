@@ -1,5 +1,4 @@
 import { client } from "./customApi";
-import { iUserInfo } from "../types/index";
 
 export const getUserInfo = async (username: string) => {
   try {
