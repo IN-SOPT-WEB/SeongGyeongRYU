@@ -8,7 +8,7 @@ export default function Router() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SearchInput />}>
+          <Route path="search" element={<SearchInput />}>
             <Route path=":username" element={<Result />}></Route>
           </Route>
         </Routes>
