@@ -16,13 +16,15 @@ export default function Result() {
   useEffect(() => {
     if (username) {
       setLoading(true);
-      const res = async () => {
-        await getUserInfo(username);
-      };
-      setLoading(false);
-      console.log(res);
+      const getNewUserInfo = async () => {
+        const res = await getUserInfo(username);
+        console.log(res);
+        const newData = res as iUserInfo;
+        setUserGithubInfo(newData);
 
-      // setUserGithubInfo(res);
+        setLoading(false);
+      };
+      getNewUserInfo();
     }
   }, [username]);
 
