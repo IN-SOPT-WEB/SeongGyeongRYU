@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import { iUserInfo } from "../types/index";
 import { getUserInfo } from "../util/githubApi";
 
-export default function UserInfo() {
+export default function Result() {
   const { username } = useParams();
   const navigate = useNavigate();
 
@@ -16,10 +16,13 @@ export default function UserInfo() {
   useEffect(() => {
     if (username) {
       setLoading(true);
-      const res = getUserInfo(username);
+      const res = async () => {
+        await getUserInfo(username);
+      };
       setLoading(false);
+      console.log(res);
 
-      setUserGithubInfo(res);
+      // setUserGithubInfo(res);
     }
   }, [username]);
 
@@ -36,22 +39,18 @@ export default function UserInfo() {
           ></DeleteBtn>
           <ProfilePic src={userGithubInfo?.avatar_url}></ProfilePic>
           <ProfileInfo>
-            <ProfileDetailInfo>
-              <ProfileDetailCargory>following </ProfileDetailCargory>
-              <ProfileDetailNum>{userGithubInfo?.following}</ProfileDetailNum>
-            </ProfileDetailInfo>
-
-            <ProfileDetailInfo>
-              <ProfileDetailCargory>follower </ProfileDetailCargory>
-              <ProfileDetailNum>{userGithubInfo?.followers}</ProfileDetailNum>
-            </ProfileDetailInfo>
-
-            <ProfileDetailInfo>
-              <ProfileDetailCargory>repo</ProfileDetailCargory>
-              <ProfileDetailNum>
-                {userGithubInfo?.public_repos}
-              </ProfileDetailNum>
-            </ProfileDetailInfo>
+            {["following", "follwer", "repo"].map((info) => (
+              <ProfileDetailInfo key={info}>
+                <ProfileDetailCargory>{info}</ProfileDetailCargory>
+                <ProfileDetailNum>
+                  {info === "following"
+                    ? userGithubInfo?.following
+                    : info === "follower"
+                    ? userGithubInfo?.followers
+                    : userGithubInfo?.public_repos}
+                </ProfileDetailNum>
+              </ProfileDetailInfo>
+            ))}
           </ProfileInfo>
         </ResultFrame>
       )}
