@@ -23,9 +23,7 @@ export default function History({
   };
 
   const deleteHistory = (_history: string) => {
-    setHistory((prev: Array<string>) =>
-      prev.filter((item) => item !== _history)
-    );
+    setHistory((prev) => prev.filter((item) => item !== _history));
   };
 
   return (

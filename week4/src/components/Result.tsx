@@ -18,11 +18,9 @@ export default function Result() {
       setLoading(true);
       const getNewUserInfo = async () => {
         const res = await getUserInfo(username);
-        console.log(res);
         const newData = res as iUserInfo;
-        setUserGithubInfo(newData);
-
         setLoading(false);
+        setUserGithubInfo(newData);
       };
       getNewUserInfo();
     }
@@ -41,7 +39,7 @@ export default function Result() {
           ></DeleteBtn>
           <ProfilePic src={userGithubInfo?.avatar_url}></ProfilePic>
           <ProfileInfo>
-            {["following", "follwer", "repo"].map((info) => (
+            {["following", "follower", "repo"].map((info) => (
               <ProfileDetailInfo key={info}>
                 <ProfileDetailCargory>{info}</ProfileDetailCargory>
                 <ProfileDetailNum>
