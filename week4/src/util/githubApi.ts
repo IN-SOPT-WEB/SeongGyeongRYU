@@ -7,6 +7,6 @@ export const getUserInfo = async (username: string) => {
     const { data } = await client.get<iUserInfo>(username);
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
