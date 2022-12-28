@@ -36,7 +36,7 @@ function Content() {
   }
 
   function handleModal() {
-    setIsShown(!isShown);
+    setIsShown((prevIsShown) => !prevIsShown);
   }
 
   function handleNextStep() {
@@ -155,9 +155,10 @@ const OptionButton = styled.button`
   font-size: 1.8rem;
   font-weight: 500;
 
+  cursor: pointer;
+
   &:hover {
     background-color: rgba(255, 241, 50);
-    cursor: pointer;
   }
 `;
 

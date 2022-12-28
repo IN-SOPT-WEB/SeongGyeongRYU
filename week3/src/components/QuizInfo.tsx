@@ -19,11 +19,15 @@ const quizList: Quiz[] = [
     ans: "런쥔",
     option: ["제노", "런쥔", "천러", "해찬", "지성"],
   },
-  { src: jeno, ans: "제노", option: ["제노", "재민", "마크", "런쥔", "지성"] },
   {
     src: haechan,
     ans: "해찬",
     option: ["천러", "제노", "해찬", "마크", "런쥔"],
+  },
+  {
+    src: jeno,
+    ans: "제노",
+    option: ["지성", "마크", "제노", "재민", "천러"],
   },
   {
     src: jaemin,
