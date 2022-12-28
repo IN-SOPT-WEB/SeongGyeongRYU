@@ -28,7 +28,7 @@ options.forEach((option) => {
   });
 });
 
-//카드 클릭하면 모달
+//카드 클릭하면 모달나오게
 const cards = document.querySelectorAll(".card");
 const cardSection = document.querySelector(".card_section");
 const body = document.querySelector("body");
