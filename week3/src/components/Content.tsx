@@ -42,7 +42,6 @@ function Content() {
   function handleNextStep() {
     if (isCorrect) {
       setAnswer(quizList[i]);
-      answer.option.sort(() => Math.random() - 0.5);
 
       if (stage !== quizList.length) {
         setStage(stage + 1);
@@ -120,9 +119,9 @@ const ScoreBoard = styled.nav`
   line-height: 7vh;
 `;
 
-const QuizWrap = styled.div`
+const QuizWrap = styled.article`
   width: 100%;
-  /* height: 74vh; */
+  height: 74vh;
 
   display: flex;
   flex-direction: column;
@@ -137,7 +136,7 @@ const QuizImg = styled.img`
   margin: 10px;
 `;
 
-const QuizAnsOption = styled.div`
+const QuizAnsOption = styled.section`
   display: flex;
   justify-content: center;
 
