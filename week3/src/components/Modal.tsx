@@ -1,7 +1,6 @@
 import React from "react";
 import ModalPortal from "./ModalPortal";
 import styled from "styled-components";
-//https://www.youtube.com/watch?v=QHFkVpB1yr0
 
 export interface ModalInfo {
   isShown: boolean;
