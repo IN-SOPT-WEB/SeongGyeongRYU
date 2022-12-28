@@ -28,10 +28,10 @@ const Modal = ({
 };
 
 const ModalFrame = styled.div<{ correct: boolean }>`
-  width: 300px;
-  height: 200px;
+  width: 30rem;
+  height: 20rem;
 
-  border-radius: 10px;
+  border-radius: 1rem;
 
   background-color: #fff;
 
@@ -40,14 +40,20 @@ const ModalFrame = styled.div<{ correct: boolean }>`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: 700;
 
   text-align: center;
-  line-height: 200px;
+  line-height: 20rem;
 
+  // vibration 적용하면 모달의 위치가 갑자기 이상한 곳으로 바뀌는 이슈. . .
   @keyframes vibration {
-    transform: rotate(-1deg);
+    from {
+      transform: rotate(-1deg);
+    }
+    to {
+      transform: rotate(1deg);
+    }
   }
 
   animation: ${(props) => (props.correct ? "none" : "vibration .1s infinite")};
@@ -63,7 +69,7 @@ const CloseBtn = styled.button`
 
   right: 3%;
 
-  font-size: 30px;
+  font-size: 3rem;
 
   background-color: transparent;
 

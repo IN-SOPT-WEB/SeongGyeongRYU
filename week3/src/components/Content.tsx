@@ -103,7 +103,7 @@ function Content() {
 }
 
 const ContentWrap = styled.div`
-  max-width: 620px;
+  max-width: 62rem;
 
   margin: 0 auto;
   padding: 0;
@@ -114,7 +114,7 @@ const ScoreBoard = styled.nav`
   height: 7vh;
   background-color: #79f116;
 
-  font-size: 25px;
+  font-size: 2.5rem;
   text-align: center;
   line-height: 7vh;
 `;
@@ -130,10 +130,10 @@ const QuizWrap = styled.article`
 `;
 
 const QuizImg = styled.img`
-  width: 320px;
-  height: 420px;
+  width: 32rem;
+  height: 42rem;
 
-  margin: 10px;
+  margin: 1rem;
 `;
 
 const QuizAnsOption = styled.section`
@@ -144,15 +144,15 @@ const QuizAnsOption = styled.section`
 `;
 
 const OptionButton = styled.button`
-  width: 100px;
-  height: 45px;
+  width: 10rem;
+  height: 4.5rem;
 
-  margin: 15px 5px 5px 5px;
-  border-radius: 20px;
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 2rem;
   border: none;
   background-color: rgb(200, 241, 22);
 
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 500;
 
   &:hover {
@@ -166,7 +166,7 @@ const RestartButton = styled.button`
   height: 7vh;
   background-color: rgb(121, 241, 22);
 
-  font-size: 25px;
+  font-size: 2.5rem;
   text-align: center;
   line-height: 7vh;
 
@@ -179,10 +179,10 @@ const RestartButton = styled.button`
 `;
 
 const EndGame = styled.div`
-  max-width: 620px;
+  max-width: 62rem;
   height: 74vh;
 
-  font-size: 100px;
+  font-size: 10rem;
   text-align: center;
   line-height: 70vh;
 `;
