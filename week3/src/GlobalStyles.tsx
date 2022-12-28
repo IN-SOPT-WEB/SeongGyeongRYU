@@ -3,8 +3,8 @@ import reset from "styled-reset";
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
-font
-*{
+
+html {
     box-sizing : border-box;
     font-size : 62.5%;
 }
