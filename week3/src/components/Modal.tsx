@@ -48,10 +48,10 @@ const ModalFrame = styled.div<{ correct: boolean }>`
   // vibration 적용하면 모달의 위치가 갑자기 이상한 곳으로 바뀌는 이슈. . .
   @keyframes vibration {
     from {
-      transform: rotate(-1deg);
+      transform: translate(-50%, -50%) rotate(-1deg);
     }
     to {
-      transform: rotate(1deg);
+      transform: translate(-50%, -50%) rotate(1deg);
     }
   }
 
