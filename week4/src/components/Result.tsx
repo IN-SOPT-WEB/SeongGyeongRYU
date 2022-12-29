@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./Loading";
-import { iUserInfo } from "../types/index";
+import { UserInfo } from "../types/index";
 import { getUserInfo } from "../util/githubApi";
 
 export default function Result() {
@@ -11,14 +11,14 @@ export default function Result() {
 
   const [loading, setLoading] = useState<boolean>(true);
 
-  const [userGithubInfo, setUserGithubInfo] = useState<iUserInfo>();
+  const [userGithubInfo, setUserGithubInfo] = useState<UserInfo>();
 
   useEffect(() => {
     if (username) {
       setLoading(true);
       const getNewUserInfo = async () => {
         const res = await getUserInfo(username);
-        const newData = res as iUserInfo;
+        const newData = res as UserInfo;
         setLoading(false);
         setUserGithubInfo(newData);
       };
