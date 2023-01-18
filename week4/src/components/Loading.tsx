@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Run from "./assets/run.gif";
+import Run from "../assets/run.gif";
 
 export default function Loading() {
   return (
