@@ -1,4 +1,5 @@
-export interface iUserInfo {
+
+export interface UserInfo {
   avatar_url: string;
   login: string;
   name: string;

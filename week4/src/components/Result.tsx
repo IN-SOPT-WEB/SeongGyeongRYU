@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./Loading";
-import { iUserInfo } from "../types/index";
+import { UserInfo } from "../types/index";
+
 import { getUserInfo } from "../util/githubApi";
 
 export default function Result() {
@@ -10,19 +11,20 @@ export default function Result() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(true);
+  const [userGithubInfo, setUserGithubInfo] = useState<UserInfo>();
 
-  const [userGithubInfo, setUserGithubInfo] = useState<iUserInfo>();
 
   useEffect(() => {
     if (username) {
       setLoading(true);
-      const res = async () => {
-        await getUserInfo(username);
-      };
-      setLoading(false);
-      console.log(res);
 
-      // setUserGithubInfo(res);
+      const getNewUserInfo = async () => {
+        const res = await getUserInfo(username);
+        const newData = res as UserInfo;
+        setLoading(false);
+        setUserGithubInfo(newData);
+      };
+      getNewUserInfo();
     }
   }, [username]);
 
@@ -39,7 +41,9 @@ export default function Result() {
           ></DeleteBtn>
           <ProfilePic src={userGithubInfo?.avatar_url}></ProfilePic>
           <ProfileInfo>
-            {["following", "follwer", "repo"].map((info) => (
+
+            {["following", "follower", "repo"].map((info) => (
+
               <ProfileDetailInfo key={info}>
                 <ProfileDetailCargory>{info}</ProfileDetailCargory>
                 <ProfileDetailNum>

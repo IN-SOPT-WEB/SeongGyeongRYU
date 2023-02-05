@@ -26,6 +26,7 @@ export default function History({
     setHistory((prev: Array<string>) =>
       prev.filter((item) => item !== _history)
     );
+
   };
 
   return (
@@ -84,7 +85,9 @@ const DeleteButton = styled.button`
   border: none;
   padding: 0;
 
+
   width: 50px;
+
   height: 50px;
 
   font-size: 20px;

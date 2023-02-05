@@ -40,7 +40,7 @@ export default function Search() {
               type="text"
               placeholder="깃허브 유저명을 입력해주세요"
               autoComplete="false"
-              value={inputName || ""}
+              value={inputName}
               onChange={handleChange}
               onFocus={() => setIsOpen(true)}
               onBlur={(e) => e.relatedTarget === null && setIsOpen(false)}
