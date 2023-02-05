@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./Loading";
 import { UserInfo } from "../types/index";
+
 import { getUserInfo } from "../util/githubApi";
 
 export default function Result() {
@@ -10,12 +11,13 @@ export default function Result() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(true);
-
   const [userGithubInfo, setUserGithubInfo] = useState<UserInfo>();
+
 
   useEffect(() => {
     if (username) {
       setLoading(true);
+
       const getNewUserInfo = async () => {
         const res = await getUserInfo(username);
         const newData = res as UserInfo;
@@ -39,7 +41,9 @@ export default function Result() {
           ></DeleteBtn>
           <ProfilePic src={userGithubInfo?.avatar_url}></ProfilePic>
           <ProfileInfo>
+
             {["following", "follower", "repo"].map((info) => (
+
               <ProfileDetailInfo key={info}>
                 <ProfileDetailCargory>{info}</ProfileDetailCargory>
                 <ProfileDetailNum>

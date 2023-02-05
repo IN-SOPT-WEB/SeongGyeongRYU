@@ -1,6 +1,11 @@
 import ReactDom from "react-dom";
+import { ReactNode } from "react";
 
-const ModalPortal = ({ children }) => {
+interface childrenProps {
+  children: ReactNode;
+}
+
+const ModalPortal = ({ children }: childrenProps) => {
   const modalRoot = document.getElementById("modal-root");
   return ReactDom.createPortal(children, modalRoot);
 };

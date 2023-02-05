@@ -23,26 +23,30 @@ export default function History({
   };
 
   const deleteHistory = (_history: string) => {
-    setHistory((prev) => prev.filter((item) => item !== _history));
+    setHistory((prev: Array<string>) =>
+      prev.filter((item) => item !== _history)
+    );
+
   };
 
   return (
     <>
       {isOpen ? (
         <HistoryModal tabIndex={0}>
-          {history?.map((_history) => (
-            <HistoryItemWrap key={_history}>
-              <HistoryItem onClick={() => selectHistory(_history)}>
-                {_history}
-              </HistoryItem>
-              <DeleteButton
-                type="button"
-                onClick={() => deleteHistory(_history)}
-              >
-                X
-              </DeleteButton>
-            </HistoryItemWrap>
-          ))}
+          {history &&
+            history.map((_history) => (
+              <HistoryItemWrap key={_history}>
+                <HistoryItem onClick={() => selectHistory(_history)}>
+                  {_history}
+                </HistoryItem>
+                <DeleteButton
+                  type="button"
+                  onClick={() => deleteHistory(_history)}
+                >
+                  X
+                </DeleteButton>
+              </HistoryItemWrap>
+            ))}
         </HistoryModal>
       ) : null}
     </>
@@ -80,6 +84,9 @@ const DeleteButton = styled.button`
   width: 50px;
   border: none;
   padding: 0;
+
+
+  width: 50px;
 
   height: 50px;
 

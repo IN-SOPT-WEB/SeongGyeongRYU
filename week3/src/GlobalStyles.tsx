@@ -3,14 +3,15 @@ import reset from "styled-reset";
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
-font
-*{
+
+html {
     box-sizing : border-box;
+    font-size : 62.5%;
 }
 
 body{
     font-family: 'Do Hyeon', sans-serif;
-    min-width : 620px;
+    min-width : 62rem;
     background-color : rgb(181,214,146);
 }
 `;

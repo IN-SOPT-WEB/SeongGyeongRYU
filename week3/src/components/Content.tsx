@@ -2,35 +2,30 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { quizList } from "./QuizInfo";
 import Modal from "./Modal";
+import { Quiz } from "./QuizInfo";
+import Confetti from "./Confetti";
+
+interface QuizProps {
+  isOver: boolean;
+  isCorrect: boolean;
+}
 
 quizList.sort(() => Math.random() - 0.5);
+let i = 0;
 
 function Content() {
-  //답
-  const [answerIndex, setAnswerIndex] = useState(0);
-  const [answerOption, setAnswerOption] = useState(quizList[0]);
+  const [answer, setAnswer] = useState<Quiz>(quizList[i]);
+  const [stage, setStage] = useState<number>(1);
 
-  //단계
-  const [stage, setStage] = useState(1);
+  const [isOver, setIsOver] = useState<boolean>(false);
+  const [isCorrect, setIsCorrect] = useState<boolean>(false);
 
-  const [isOver, setIsOver] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
-
-  //모달
   const [isShown, setIsShown] = useState(false);
 
-  function checkAnswer(answerSelected) {
-    //맞았을 때
-    if (answerSelected === answerOption.answer) {
-      setAnswerIndex(answerIndex + 1);
-      setAnswerOption(quizList[answerIndex]);
-      console.log(answerIndex);
-      console.log(answerOption.answer);
+  function checkAnswer(chosen: string) {
+    if (chosen === answer.ans) {
+      i++;
       setIsCorrect(true);
-
-      answerOption.optionList.sort(() => Math.random() - 0.5);
-
-      stage !== quizList.length ? setStage(stage + 1) : setIsOver(true);
     } else {
       setIsCorrect(false);
     }
@@ -44,14 +39,32 @@ function Content() {
     setIsShown((prevIsShown) => !prevIsShown);
   }
 
-  function Quiz({ isOver, isCorrect }) {
-    if (isOver) return <EndGame>끝!</EndGame>;
+  function handleNextStep() {
+    if (isCorrect) {
+      setAnswer(quizList[i]);
+
+      if (stage !== quizList.length) {
+        setStage(stage + 1);
+      } else {
+        setIsOver(true);
+      }
+    }
+  }
+
+  function Quiz({ isOver, isCorrect }: QuizProps) {
+    if (isOver)
+      return (
+        <>
+          <Confetti></Confetti>
+          <EndGame>끝!</EndGame>
+        </>
+      );
     return (
       <div>
         <QuizWrap>
-          <QuizImg src={answerOption.src} />
+          <QuizImg src={answer.src} />
           <QuizAnsOption>
-            {answerOption.optionList.map((opt) => {
+            {answer.option.map((opt) => {
               return (
                 <OptionButton
                   key={opt}
@@ -70,6 +83,7 @@ function Content() {
               isShown={isShown}
               isCorrect={isCorrect}
               handleModal={() => handleModal()}
+              handleNextStep={() => handleNextStep()}
             />
           )}
         </QuizWrap>
@@ -89,7 +103,7 @@ function Content() {
 }
 
 const ContentWrap = styled.div`
-  max-width: 620px;
+  max-width: 62rem;
 
   margin: 0 auto;
   padding: 0;
@@ -100,12 +114,12 @@ const ScoreBoard = styled.nav`
   height: 7vh;
   background-color: #79f116;
 
-  font-size: 25px;
+  font-size: 2.5rem;
   text-align: center;
   line-height: 7vh;
 `;
 
-const QuizWrap = styled.div`
+const QuizWrap = styled.article`
   width: 100%;
   height: 74vh;
 
@@ -116,13 +130,13 @@ const QuizWrap = styled.div`
 `;
 
 const QuizImg = styled.img`
-  width: 320px;
-  height: 420px;
+  width: 32rem;
+  height: 42rem;
 
-  margin: 10px;
+  margin: 1rem;
 `;
 
-const QuizAnsOption = styled.div`
+const QuizAnsOption = styled.section`
   display: flex;
   justify-content: center;
 
@@ -130,15 +144,15 @@ const QuizAnsOption = styled.div`
 `;
 
 const OptionButton = styled.button`
-  width: 100px;
-  height: 45px;
+  width: 10rem;
+  height: 4.5rem;
 
-  margin: 15px 5px 5px 5px;
-  border-radius: 20px;
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 2rem;
   border: none;
   background-color: rgb(200, 241, 22);
 
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 500;
 
   cursor: pointer;
@@ -153,7 +167,7 @@ const RestartButton = styled.button`
   height: 7vh;
   background-color: rgb(121, 241, 22);
 
-  font-size: 25px;
+  font-size: 2.5rem;
   text-align: center;
   line-height: 7vh;
 
@@ -166,10 +180,10 @@ const RestartButton = styled.button`
 `;
 
 const EndGame = styled.div`
-  max-width: 620px;
+  max-width: 62rem;
   height: 74vh;
 
-  font-size: 100px;
+  font-size: 10rem;
   text-align: center;
   line-height: 70vh;
 `;
